@@ -146,7 +146,7 @@ namespace THOK.WES.View
             // 
             this.Column1.AutomaticSortingEnabled = false;
             this.Column1.DataPropertyName = "BILLDATE";
-            this.Column1.FilteringEnabled = false;
+            this.Column1.FilteringEnabled = true;
             this.Column1.HeaderText = "单据日期";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -156,7 +156,7 @@ namespace THOK.WES.View
             // 
             this.BILLMASTERID.AutomaticSortingEnabled = false;
             this.BILLMASTERID.DataPropertyName = "BILLMASTERID";
-            this.BILLMASTERID.FilteringEnabled = false;
+            this.BILLMASTERID.FilteringEnabled = true;
             this.BILLMASTERID.HeaderText = "单据号";
             this.BILLMASTERID.Name = "BILLMASTERID";
             this.BILLMASTERID.ReadOnly = true;
@@ -169,7 +169,7 @@ namespace THOK.WES.View
             this.Column3.DataPropertyName = "BILLNAME";
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column3.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Column3.FilteringEnabled = false;
+            this.Column3.FilteringEnabled = true;
             this.Column3.HeaderText = "单据类型";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -181,7 +181,7 @@ namespace THOK.WES.View
             this.Column5.DataPropertyName = "STATENAME";
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.Column5.DefaultCellStyle = dataGridViewCellStyle16;
-            this.Column5.FilteringEnabled = false;
+            this.Column5.FilteringEnabled = true;
             this.Column5.HeaderText = "单据状态";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;

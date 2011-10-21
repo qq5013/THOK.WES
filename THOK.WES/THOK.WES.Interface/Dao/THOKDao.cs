@@ -29,8 +29,7 @@ namespace THOK.WES.Interface.Dao
             string machin = Environment.MachineName;
             string sql = @"UPDATE WMS_IN_BILLMASTER SET [STATUS] = '5' 
                                 WHERE BILLNO='{0}' AND [STATUS]<>'5'; 
-                           UPDATE WMS_IN_ALLOT SET [STATUS]='1',OPERATEPERSON='{1}',STARTTIME=GETDATE() 
-                                WHERE BILLNO='{0}'";
+                                UPDATE WMS_IN_ALLOT SET [STATUS]='1',OPERATEPERSON='{1}',STARTTIME=GETDATE() WHERE BILLNO='{0}'";
             sql = string.Format(sql, billID, machin);
             this.ExecuteNonQuery(sql);
         }
@@ -75,7 +74,7 @@ namespace THOK.WES.Interface.Dao
             string machin = Environment.MachineName;
             string sql = @"UPDATE WMS_OUT_BILLMASTER SET STATUS='5' WHERE BILLNO='{0}';
                            UPDATE WMS_OUT_ALLOTMASTER SET [STATUS]='1' WHERE BILLNO='{0}';
-                           UPDATE WMS_OUT_ALLOTDETAIL SET OPERATEPERSON='{1}',STARTTIME=GETDATE() WHERE BILLNO='{0}'";
+                           UPDATE WMS_OUT_ALLOTDETAIL SET [STATUS]='1',OPERATEPERSON='{1}',STARTTIME=GETDATE() WHERE BILLNO='{0}'";
             sql = string.Format(sql, billID, machin);
             this.ExecuteNonQuery(sql);
         }

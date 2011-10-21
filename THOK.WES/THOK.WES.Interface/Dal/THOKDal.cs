@@ -5,6 +5,7 @@ using System.Data;
 using THOK.Util;
 using THOK.WES.Interface.Dao;
 using THOK.WES.Interface.Util;
+using System.Windows.Forms;
 
 namespace THOK.WES.Interface.Dal
 {
@@ -19,57 +20,65 @@ namespace THOK.WES.Interface.Dal
         public bool GetInBill()
         {
             bool tag = true;
-            using (PersistentManager wesdbpm = new PersistentManager())
+            try
             {
-                using (PersistentManager wmsdbpm = new PersistentManager("WMSConnection"))
+                using (PersistentManager wesdbpm = new PersistentManager())
                 {
-                    BillDao wesBillDao = new BillDao();
-                    wesBillDao.SetPersistentManager(wesdbpm);
-                    THOKDao wmsTHOKDao = new THOKDao();
-                    wmsTHOKDao.SetPersistentManager(wmsdbpm);
-                    //读取入库单
-                    DataTable inBillTable = wmsTHOKDao.ReadInBill();
-                    //无记录，直接返回
-                    if (inBillTable.Rows.Count == 0)
-                        return true;
-                    //获取无重复行
-                    DataTable distinctTable = TableUtil.GetDataTableDistinct(inBillTable, new string[] {"BILLNO"});
-
-                    foreach (DataRow row in distinctTable.Rows)
+                    using (PersistentManager wmsdbpm = new PersistentManager("WMSConnection"))
                     {
-                        DataSet tmpdataSet = TableUtil.GenerateEmptyTables();
-                        //获取相同单号数据
-                        DataRow[] detailRowList = inBillTable.Select("BILLNO='" + row["BILLNO"].ToString() + "'");
+                        BillDao wesBillDao = new BillDao();
+                        wesBillDao.SetPersistentManager(wesdbpm);
+                        THOKDao wmsTHOKDao = new THOKDao();
+                        wmsTHOKDao.SetPersistentManager(wmsdbpm);
+                        //读取入库单
+                        DataTable inBillTable = wmsTHOKDao.ReadInBill();
+                        //无记录，直接返回
+                        if (inBillTable.Rows.Count == 0)
+                            return true;
+                        //获取无重复行
+                        DataTable distinctTable = TableUtil.GetDataTableDistinct(inBillTable, new string[] { "BILLNO" });
 
-                        DataRow billRow = tmpdataSet.Tables["MASTER"].NewRow();
-                        billRow["BILLID"] = row["BILLNO"];
-                        billRow["BILLCODE"] = "1";
-                        billRow["STATE"] = "4";                    
-                        billRow["BILLDATE"] = detailRowList[0]["BILLDATE"].ToString();
-                        tmpdataSet.Tables["MASTER"].Rows.Add(billRow);
-
-                        foreach (DataRow detailRow in detailRowList)
+                        foreach (DataRow row in distinctTable.Rows)
                         {
-                            DataRow newDetailRow = tmpdataSet.Tables["DETAIL"].NewRow();
-                            newDetailRow["BILLID"] = detailRow["BILLNO"];
-                            newDetailRow["DETAILID"] = detailRow["ID"];
-                            newDetailRow["STORAGEID"] = detailRow["CELLNAME"];
-                            newDetailRow["OPERATECODE"] = "1";
-                            newDetailRow["TOBACCONAME"] = detailRow["PRODUCTNAME"];
-                            newDetailRow["OPERATEPIECE"] = Convert.ToInt32(detailRow["OPERATEPIECE"]);
-                            newDetailRow["PIECE"] = Convert.ToInt32(detailRow["OPERATEPIECE"]);
-                            newDetailRow["OPERATEITEM"] = Convert.ToInt32(detailRow["OPERATEITEM"]);
-                            newDetailRow["ITEM"] = Convert.ToInt32(detailRow["OPERATEITEM"]);
-                            newDetailRow["CONFIRMSTATE"] = "1";
-                            newDetailRow["TARGETSTORAGE"] = "";
-                            tmpdataSet.Tables["DETAIL"].Rows.Add(newDetailRow);
+                            DataSet tmpdataSet = TableUtil.GenerateEmptyTables();
+                            //获取相同单号数据
+                            DataRow[] detailRowList = inBillTable.Select("BILLNO='" + row["BILLNO"].ToString() + "'");
 
+                            DataRow billRow = tmpdataSet.Tables["MASTER"].NewRow();
+                            billRow["BILLID"] = row["BILLNO"];
+                            billRow["BILLCODE"] = "1";
+                            billRow["STATE"] = "4";
+                            billRow["BILLDATE"] = detailRowList[0]["BILLDATE"].ToString();
+                            tmpdataSet.Tables["MASTER"].Rows.Add(billRow);
+
+                            foreach (DataRow detailRow in detailRowList)
+                            {
+                                DataRow newDetailRow = tmpdataSet.Tables["DETAIL"].NewRow();
+                                newDetailRow["BILLID"] = detailRow["BILLNO"];
+                                newDetailRow["DETAILID"] = detailRow["ID"];
+                                newDetailRow["STORAGEID"] = detailRow["CELLNAME"];
+                                newDetailRow["OPERATECODE"] = "1";
+                                newDetailRow["TOBACCONAME"] = detailRow["PRODUCTNAME"];
+                                newDetailRow["OPERATEPIECE"] = Convert.ToInt32(detailRow["OPERATEPIECE"]);
+                                newDetailRow["PIECE"] = Convert.ToInt32(detailRow["OPERATEPIECE"]);
+                                newDetailRow["OPERATEITEM"] = Convert.ToInt32(detailRow["OPERATEITEM"]);
+                                newDetailRow["ITEM"] = Convert.ToInt32(detailRow["OPERATEITEM"]);
+                                newDetailRow["CONFIRMSTATE"] = "1";
+                                newDetailRow["TARGETSTORAGE"] = "";
+                                tmpdataSet.Tables["DETAIL"].Rows.Add(newDetailRow);
+
+                            }
+                            new SplitBillDal().AddOrder(tmpdataSet);
+                            wmsTHOKDao.UpdateInBillStatus(row["BILLNO"].ToString());
                         }
-                        new SplitBillDal().AddOrder(tmpdataSet);
-                        wmsTHOKDao.UpdateInBillStatus(row["BILLNO"].ToString());
                     }
                 }
             }
+            catch (Exception exp)
+            {
+                tag = false;
+            }
+            
             return tag;
         }
 

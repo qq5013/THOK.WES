@@ -57,7 +57,7 @@ namespace THOK.WES.Dao
         {
             //opType = 0:正常操作，opType = 1:实时出库（大品种），opType = 2:正常出库（小品牌）
             string sql = "SELECT DETAILID,A.STORAGEID,B.OPERATENAME,LTRIM(RTRIM(A.TOBACCONAME)) TOBACCONAME," +
-                                        " OPERATEPIECE,OPERATEITEM,C.STATENAME,A.OPERATOR,A.TARGETSTORAGE,A.BILLMASTERID,A.BILLID,A.OPERATECODE," +
+                                        " OPERATEPIECE,OPERATEITEM,C.STATENAME,A.TARGETSTORAGE,A.OPERATOR,A.BILLMASTERID,A.BILLID,A.OPERATECODE," +
                                         " ISNULL(E.BATCHNO,0) BATCHNO " +
                                         " FROM BILLDETAIL A " +
                                         " LEFT JOIN OPERATETYPE B ON A.OPERATECODE=B.OPERATECODE " +

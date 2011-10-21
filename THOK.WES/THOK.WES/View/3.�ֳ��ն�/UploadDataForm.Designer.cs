@@ -39,7 +39,7 @@ namespace THOK.WES.View
             this.btnExit = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
-            this.Master = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillMasterID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,7 +90,7 @@ namespace THOK.WES.View
             // sslOperator
             // 
             this.sslOperator.Name = "sslOperator";
-            this.sslOperator.Size = new System.Drawing.Size(53, 17);
+            this.sslOperator.Size = new System.Drawing.Size(56, 17);
             this.sslOperator.Text = "操作员：";
             // 
             // dgvMain
@@ -112,7 +112,7 @@ namespace THOK.WES.View
             this.dgvMain.ColumnHeadersHeight = 22;
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Master,
+            this.BillMasterID,
             this.Column1,
             this.Column4,
             this.Column2,
@@ -203,12 +203,12 @@ namespace THOK.WES.View
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // Master
+            // BillMasterID
             // 
-            this.Master.DataPropertyName = "Master";
-            this.Master.HeaderText = "主单据号";
-            this.Master.Name = "Master";
-            this.Master.ReadOnly = true;
+            this.BillMasterID.DataPropertyName = "BillMasterID";
+            this.BillMasterID.HeaderText = "主单据号";
+            this.BillMasterID.Name = "BillMasterID";
+            this.BillMasterID.ReadOnly = true;
             // 
             // Column1
             // 
@@ -236,7 +236,7 @@ namespace THOK.WES.View
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "MoveStorage";
+            this.Column3.DataPropertyName = "TargetStorage";
             this.Column3.HeaderText = "移出货位";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -324,7 +324,7 @@ namespace THOK.WES.View
         protected System.Windows.Forms.Button btnPda;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnUpload;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Master;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillMasterID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

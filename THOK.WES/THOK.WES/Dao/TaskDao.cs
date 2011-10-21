@@ -31,11 +31,7 @@ namespace THOK.WES.Dao
 
                             UPDATE STORAGES SET
                             ACT = '',PRODUCTNAME='',CONTENTS='',NUMBERSHOW='',[SIGN]=0
-                            WHERE STORAGEID = '{0}'
-
-                            UPDATE STORAGES SET [SIGN]=1
-                            WHERE ADDRESS IN (SELECT ADDRESS FROM STORAGES WHERE STORAGEID = '{0}') 
-                            AND ([SIGN]=2 OR [SIGN]=3)";
+                            WHERE STORAGEID = '{0}'";
             sql = string.Format(sql,storageId, billId, detailId );
             ExecuteNonQuery(sql);
         }

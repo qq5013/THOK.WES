@@ -5,13 +5,12 @@
     <PORT name="PORT" value="5000" />
   </UDP>
   <RFID>
-    <USEDRFID name="USEDRFID" value="0" />
     <PORT name="PORT" value="com2" />
   </RFID>
   <Layers>
-    <Number name="Number" value="0,1,2,3" />
+    <Number name="Number" value="1" />
   </Layers>
   <DeviceType>
-    <Device name="Device" value="1" />
+    <Device name="Device" value="0" />
   </DeviceType>
 </Config>

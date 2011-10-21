@@ -172,6 +172,106 @@ namespace THOK.WES
         }       
     }
 
+    public class wareHouse : BaseObject
+    {
+        private string productCode;
+        [CategoryAttribute("产品信息"), DescriptionAttribute("卷烟信息"), Chinese("卷烟编码")]
+        public string ProductCode
+        {
+            get { return productCode; }
+            set { productCode = value; }
+        }
+
+        private string productName;
+        [CategoryAttribute("产品信息"), DescriptionAttribute("卷烟信息"), Chinese("卷烟名称")]
+        public string ProductName
+        {
+            get { return productName; }
+            set { productName = value; }
+        }
+
+        private string quantity;
+        [CategoryAttribute("产品信息"), DescriptionAttribute("卷烟信息"), Chinese("卷烟件数")]
+        public string Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
+
+        private string quantityBar;
+        [CategoryAttribute("产品信息"), DescriptionAttribute("卷烟信息"), Chinese("卷烟条数")]
+        public string QuantityBar
+        {
+            get { return quantityBar; }
+            set { quantityBar = value; }
+        }
+
+        private string inDate;
+        [CategoryAttribute("产品信息"), DescriptionAttribute("卷烟信息"), Chinese("入库时间")]
+        public string InDate
+        {
+            get { return inDate; }
+            set { inDate = value; }
+        }
+
+        private string whCode;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("仓库信息"), Chinese("仓库编码")]
+        public string WhCode
+        {
+            get { return whCode; }
+            set { whCode = value; }
+        }
+
+        private string whName;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("仓库信息"), Chinese("仓库名称")]
+        public string WhName
+        {
+            get { return whName; }
+            set { whName = value; }
+        }
+
+        private string shelfName;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("货架信息"), Chinese("货架名称")]
+        public string ShelfName
+        {
+            get { return shelfName; }
+            set { shelfName = value; }
+        }
+
+        private string column;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("货架信息"), Chinese("列")]
+        public string Column
+        {
+            get { return column; }
+            set { column = value; }
+        }
+
+        private string row;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("货架信息"), Chinese("层")]
+        public string Row
+        {
+            get { return row; }
+            set { row = value; }
+        }
+
+        private string cellCode;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("货位信息"), Chinese("货位编码")]
+        public string CellCode
+        {
+            get { return cellCode; }
+            set { cellCode = value; }
+        }
+
+        private string cellName;
+        [CategoryAttribute("仓库信息"), DescriptionAttribute("货位信息"), Chinese("货位名称")]
+        public string CellName
+        {
+            get { return cellName; }
+            set { cellName = value; }
+        }
+    }
+
+
     public abstract class ComboBoxItemTypeConvert : TypeConverter
     {
         public Hashtable _hash = null;

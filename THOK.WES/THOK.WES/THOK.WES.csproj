@@ -30,7 +30,7 @@
   <ItemGroup>
     <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\DataGridViewAutoFilter.dll</HintPath>
+      <HintPath>..\DataGridViewAutoFilter.dll</HintPath>
     </Reference>
     <Reference Include="IBM.Data.DB2, Version=9.0.0.2, Culture=neutral, PublicKeyToken=7c307b91aa13d208, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -38,7 +38,7 @@
     </Reference>
     <Reference Include="OpenNETCF.Desktop.Communication, Version=2.9.2759.1856, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\OpenNETCF.Desktop.Communication.dll</HintPath>
+      <HintPath>..\OpenNETCF.Desktop.Communication.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -47,19 +47,23 @@
     <Reference Include="System.Xml" />
     <Reference Include="THOK.AF.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\THOK.AF.View.dll</HintPath>
+      <HintPath>..\THOK.AF.View.dll</HintPath>
     </Reference>
     <Reference Include="THOK.ParamUtil, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\THOK.ParamUtil.dll</HintPath>
+      <HintPath>..\THOK.ParamUtil.dll</HintPath>
     </Reference>
     <Reference Include="THOK.UDP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\THOK.UDP.dll</HintPath>
+      <HintPath>..\THOK.UDP.dll</HintPath>
     </Reference>
     <Reference Include="THOK.Util, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Reference\THOK.Util.dll</HintPath>
+      <HintPath>..\THOK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="XPExplorerBar, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\XPExplorerBar.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -67,11 +71,13 @@
     <Compile Include="Dal\ConfigUtil.cs" />
     <Compile Include="Dal\ParameterDal.cs" />
     <Compile Include="Dal\PDAUploadDataDal.cs" />
+    <Compile Include="Dal\ShelfDal.cs" />
     <Compile Include="Dal\StorageDal.cs" />
     <Compile Include="Dal\TaskDal.cs" />
     <Compile Include="Dao\BillDao.cs" />
     <Compile Include="Dao\ParameterDao.cs" />
     <Compile Include="Dao\PDAUploadDataDao.cs" />
+    <Compile Include="Dao\ShelfDao.cs" />
     <Compile Include="Dao\StockInDao.cs" />
     <Compile Include="Dao\StorageDao.cs" />
     <Compile Include="Dao\TaskDao.cs" />
@@ -87,6 +93,7 @@
     </Compile>
     <Compile Include="ReadRFID.cs" />
     <Compile Include="SendUDP.cs" />
+    <Compile Include="THOKUtil.cs" />
     <Compile Include="View\4.统计查询\BillQueryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +117,18 @@
     </Compile>
     <Compile Include="View\2.仓库作业\CheckTaskForm.Designer.cs">
       <DependentUpon>CheckTaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\4.统计查询\CellDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\4.统计查询\CellDialog.designer.cs">
+      <DependentUpon>CellDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\4.统计查询\CellQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\4.统计查询\CellQueryForm.designer.cs">
+      <DependentUpon>CellQueryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\ConfirmDialog.cs">
       <SubType>Form</SubType>
@@ -204,6 +223,14 @@
       <SubType>Designer</SubType>
       <DependentUpon>BillQueryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\4.统计查询\CellDialog.resx">
+      <DependentUpon>CellDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\4.统计查询\CellQueryForm.resx">
+      <DependentUpon>CellQueryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ConfirmDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
@@ -254,12 +281,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\THOK.WES.Interface\THOK.WES.Interface.csproj">
-      <Project>{78B38305-22F2-4E8A-B076-5B3D39D14682}</Project>
-      <Name>THOK.WES.Interface</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\accept.png" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +327,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\THOK.WES.Interface\THOK.WES.Interface.csproj">
+      <Project>{78B38305-22F2-4E8A-B076-5B3D39D14682}</Project>
+      <Name>THOK.WES.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

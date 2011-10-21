@@ -14,6 +14,7 @@ namespace THOK.WES.View
         {
             InitializeComponent();
             billType = "4";
+            dgvMain.Columns["TARGETSTORAGE"].Visible = true;
         }
     }
 }

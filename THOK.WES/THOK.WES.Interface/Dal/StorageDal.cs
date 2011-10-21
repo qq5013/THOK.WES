@@ -75,7 +75,6 @@ namespace THOK.WES.Interface.Dal
                 storagerow["LocationID"] = Convert.ToInt32(row["LAYER_NO"].ToString());
                 if (row["AREATYPE"].ToString() == "1")
                 {
-                    //storagerow["StorageType"] = 0;
                     storagerow["LocationID"] = 0;
                 }
                 ds.Tables["STORAGE"].Rows.Add(storagerow);

@@ -21,6 +21,7 @@ namespace THOK.WES.View
             btnOpType.Text = "Õý³£";
             timer1.Enabled = false;
             btnSearch.Enabled = true;
+            dgvMain.Columns["TARGETSTORAGE"].Visible = true;
         }
     }
 }
