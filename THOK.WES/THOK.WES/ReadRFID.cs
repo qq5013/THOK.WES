@@ -84,8 +84,7 @@ namespace THOK.WES
             else
             {
                 return strRecv;
-            }
-            
+            }            
         }
 
         /// <summary>
