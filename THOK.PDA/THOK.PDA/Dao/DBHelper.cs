@@ -33,9 +33,10 @@ namespace THOK.PDA.Dao
                         connection.Open();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     connection = null;
+                    throw ex;
                 }
                 return connection;
             }

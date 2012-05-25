@@ -22,7 +22,8 @@ namespace THOK.PDA.View
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
+            this.Close();
         }
 
         private void btnParamenter_Click(object sender, EventArgs e)
@@ -71,18 +72,48 @@ namespace THOK.PDA.View
                     if (SystemCache.MasterTable == null)
                     {
                         MessageBox.Show("没有需操作的数据!!");
+                        WaitCursor.Restore();
                         return;
                     }
                 }
                 BillMasterForm from = new BillMasterForm(billType);
+                WaitCursor.Restore();
                 from.Show();
                 this.Visible = false;                
             }
             catch (Exception ex)
             {
                 WaitCursor.Restore();
-                MessageBox.Show("获取数据出错!" + ex.Message);
+                WriteLoggerFile("获取数据出错!" + ex.Message + ex.StackTrace + ex.ToString());
+                MessageBox.Show("获取数据出错!" + ex.Message + ex.StackTrace + ex.ToString());
             }            
-        }   
+        }
+
+        private void CreateDirectory(string directoryName)
+        {
+            if (!System.IO.Directory.Exists(directoryName))
+                System.IO.Directory.CreateDirectory(directoryName);
+        }
+
+        private void WriteLoggerFile(string text)
+        {
+            try
+            {
+                string path = "";
+                CreateDirectory("日志");
+                path = "日志";
+                path = path + @"/" + DateTime.Now.ToString().Substring(0, 4).Trim();
+                CreateDirectory(path);
+                path = path + @"/" + DateTime.Now.ToString().Substring(0, 7).Trim();
+                path = path.TrimEnd(new char[] { '-' });
+                CreateDirectory(path);
+                path = path + @"/" + DateTime.Now.ToShortDateString() + ".txt";
+                System.IO.File.AppendText(path).WriteLine(string.Format("{0} {1}", DateTime.Now, text));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
     }
 }

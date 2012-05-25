@@ -129,7 +129,6 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(224)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(243, 320);
-            this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
@@ -138,7 +137,6 @@
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.btnOut);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.TopMost = true;

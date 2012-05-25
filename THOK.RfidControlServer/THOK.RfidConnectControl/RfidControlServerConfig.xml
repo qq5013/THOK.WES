@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <RfidControlServerConfig>
+    <!--连接RFID读写器服务器的连接字符串信息配置 tcp://127.0.0.1:5000;-->
+    <TargetServerTcpConnectionString>tcp://127.0.0.1:5000;</TargetServerTcpConnectionString>
+  </RfidControlServerConfig>
+</Root>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TCPForwardserServer>
+	<property name="TCPForwardserServerDic">
+		<key name="server-01">
+      <SourceTcpConnectionString>tcp://127.0.0.1:6000;127.0.0.1;</SourceTcpConnectionString>
+      <TargetTcpConnectionString>tcp://127.0.0.1:5000;</TargetTcpConnectionString>
+		</key>
+    <key name="server-02">
+      <SourceTcpConnectionString>tcp://127.0.0.1:7000;127.0.0.1;</SourceTcpConnectionString>
+      <TargetTcpConnectionString>tcp://127.0.0.1:5000;</TargetTcpConnectionString>
+    </key>
+	</property>
+</TCPForwardserServer>
+

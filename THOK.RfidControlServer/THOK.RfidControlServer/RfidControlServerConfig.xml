@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <RfidControlServerConfig>
+    <!--连接RFID读写器的连接字符串信息配置 serial://com8 ｜｜ tcp://127.0.0.1:5000;-->
+    <BRIConnectionString>serial://com8</BRIConnectionString>
+    <!--连接中软RFID扫码软件的连接字符串信息配置 serial://com2 ｜｜ tcp://127.0.0.1:5000;127.0.0.1;-->
+    <RfidSoftConnectionString>tcp://127.0.0.1:5000;127.0.0.1;</RfidSoftConnectionString>
+    <!--是否允许读写连接默认标识值-->
+    <IsConnectEnable>true</IsConnectEnable>
+    <!--6C 标签ID起始字节-->
+    <EPCTagIDStartPos>4</EPCTagIDStartPos>
+    <!--6C 标签数据容量-->
+    <EPCTagDataLength>500</EPCTagDataLength>
+    <!--6C 标签是否自动创建全球唯一标识GUID-->
+    <EPCTagAutoCreateGuid>true</EPCTagAutoCreateGuid>
+    <!--6C 标签是否已自动创建GUID的标识起始字节-->
+    <EPCTagGuidSetsDaraStartPos>20</EPCTagGuidSetsDaraStartPos>
+    <!--6C 标签是否已自动创建GUID的标识字节数-->
+    <EPCTagGuidSetsDataLength>2</EPCTagGuidSetsDataLength>
+    <!--6C 标签是否已自动创建GUID的标识数据内容-->
+    <EPCTagGuidSets>HDDFF</EPCTagGuidSets>
+    <!--读写错误时提示语音内容-->
+    <ReadErr>RFID 读写失败！</ReadErr>
+    <!--读写开始时提示语音内容-->
+    <Reading>RFID 开始读写</Reading>
+    <!--读写完成时提示语音内容-->
+    <ReadRuning>RFID 正常运行</ReadRuning>
+    <!--读写连接关闭时提示语音内容-->
+    <ReadClose>RFID  读写连接关闭！</ReadClose>
+    <!--读写开始前等待时间单位毫秒-->
+    <ReadBeforeSleepTime>10</ReadBeforeSleepTime>
+    <!--读写开始前等待时间单位毫秒-->
+    <WriteBeforeSleepTime>10</WriteBeforeSleepTime>
+  </RfidControlServerConfig>
+</Root>
